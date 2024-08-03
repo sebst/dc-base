@@ -25,4 +25,3 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/mast
 USER root
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
 
-RUN echo "1"
