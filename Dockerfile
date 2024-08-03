@@ -2,7 +2,7 @@ ARG VARIANT="ubuntu-24.04"
 ARG BASE="mcr.microsoft.com/vscode/devcontainers/base"
 FROM ${BASE}:${VARIANT}
 
-RUN DEBIAN_FRONTEND=noninteractive sudo apt=get update && sudo apt-get install -y --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     build-essential \
     curl \
     file \
