@@ -29,13 +29,18 @@ def create_feature(feature_info):
         devcontainer_json['description'] = package_info['desc']
         devcontainer_json['documentationURL'] = package_info['homepage']
         devcontainer_json['version'] = "0.0.1"
-        devcontainer_json['options'] = {
-            "version": {
-                "type": "string",
-                "description": f"Version of {feature_info['name']} to install",
-                "default": package_info['versions']['stable'],
-            }
-        }
+        if "versioned_formulae" in package_info.keys():
+            versions = [v.split("@")[1] for v in package_info["versioned_formulae"]]
+            if versions:
+                print(f"Versions: {versions}")
+                devcontainer_json['options'] = {
+                    "version": {
+                        "type": "string",
+                        "description": f"Version of {feature_info['name']} to install",
+                        "default": versions[0],
+                        "enum": versions
+                    }
+                }
     if devcontainer_json:
         os.makedirs(os.path.join(FEATURES_DIR,  feature_info['name']), exist_ok=True)
         with open(os.path.join(FEATURES_DIR,  feature_info['name'],  'devcontainer-feature.json'), 'w') as f:
