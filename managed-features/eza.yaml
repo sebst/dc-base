@@ -1,2 +1,3 @@
 name: eza
-packageName: eza
+brew:
+  package: eza
