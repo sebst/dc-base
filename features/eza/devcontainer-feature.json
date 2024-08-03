@@ -3,12 +3,5 @@
     "id": "eza",
     "description": "Modern, maintained replacement for ls",
     "documentationURL": "https://github.com/eza-community/eza",
-    "version": "0.0.1",
-    "options": {
-        "version": {
-            "type": "string",
-            "description": "Version of eza to install",
-            "default": "0.18.23"
-        }
-    }
+    "version": "0.0.1"
 }

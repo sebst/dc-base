@@ -1,0 +1,22 @@
+{
+    "name": "postgresql",
+    "id": "postgresql",
+    "description": "Object-relational database system",
+    "documentationURL": "https://www.postgresql.org/",
+    "version": "0.0.1",
+    "options": {
+        "version": {
+            "type": "string",
+            "description": "Version of postgresql to install",
+            "default": "16",
+            "enum": [
+                "16",
+                "15",
+                "13",
+                "12",
+                "11",
+                "10"
+            ]
+        }
+    }
+}
