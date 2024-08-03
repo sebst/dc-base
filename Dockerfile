@@ -1,6 +1,6 @@
 ARG VARIANT="ubuntu-24.04"
 ARG BASE="mcr.microsoft.com/vscode/devcontainers/base"
-FROM --platform=linux/amd64 ${BASE}:${VARIANT}
+FROM ${BASE}:${VARIANT}
 
 RUN DEBIAN_FRONTEND=noninteractive sudo apt=get update && sudo apt-get install -y --no-install-recommends \
     build-essential \
