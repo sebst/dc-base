@@ -1,0 +1,33 @@
+name: Update Features
+on:
+    push:
+        branches:
+        - main
+    workflow_dispatch:
+
+jobs:
+    update_features:
+        runs-on: ubuntu-24.04
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+        - name: Set up Python 3.12
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.12
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install -r app/requirements.txt
+        - name: Update Features
+          run: |
+            python app/update_features.py
+        - uses: stefanzweifel/git-auto-commit-action@v5.0.1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            commit_message: Update Features
+            branch: main
+            commit_user_name: Bot
+            commit_user_email: bot@bascodes.com
+            commit_author: Bot <bot@bascodes.com>
