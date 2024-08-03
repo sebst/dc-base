@@ -30,10 +30,8 @@ jobs:
             password: ${{ secrets.GITHUB_TOKEN }}
         - name: Build Docker image
           run: |
-            docker buildx build --build-arg VARIANT="${{matrix.variant}}" --platform linux/amd64 -t ghcr.io/${{ github.repository }}:${{matrix.variant}} .
+            docker buildx build --build-arg VARIANT="${{matrix.variant}}" --platform linux/amd64 -t "ghcr.io/${{ github.repository }}:${{matrix.variant}}" .
         - name: Push Docker image
           run: |
-            echo "::set-output name=image::ghcr.io/${{ github.repository }}:${{matrix.variant}}"
-            echo "::set-output name=tag::${{matrix.variant}}"
-            docker push ghcr.io/${{ github.repository }}:${{matrix.variant}}
+            docker push "ghcr.io/${{ github.repository }}:${{matrix.variant}}"
 
