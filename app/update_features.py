@@ -19,6 +19,7 @@ def load_managed_features():
 
 def create_feature(feature_info):
     devcontainer_json = {}
+    install_sh = ""
     if 'brew' in feature_info.keys():
         package_name = feature_info['brew']['package']
         cmd = f"brew info --json {package_name}"
@@ -41,10 +42,15 @@ def create_feature(feature_info):
                         "enum": versions
                     }
                 }
-    if devcontainer_json:
+        install_sh += f"brew install {package_name}"
+    if devcontainer_json and install_sh:
         os.makedirs(os.path.join(FEATURES_DIR,  feature_info['name']), exist_ok=True)
         with open(os.path.join(FEATURES_DIR,  feature_info['name'],  'devcontainer-feature.json'), 'w') as f:
             json.dump(devcontainer_json, f, indent=4)
+        with open(os.path.join(FEATURES_DIR,  feature_info['name'],  'install.sh'), 'w') as f:
+            f.write("#!/usr/bin/env -S bash --noprofile --norc -o errexit -o pipefail -o noclobber -o nounset\n\n")
+            f.write(install_sh)
+            f.write("\n")
 
 
 def empty_feature_dir():
