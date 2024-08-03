@@ -28,6 +28,8 @@ jobs:
             registry: ghcr.io
             username: ${{ github.repository_owner }}
             password: ${{ secrets.GITHUB_TOKEN }}
+        - name: Display tag
+          run: echo ghcr.io/${{ github.repository }}:${{matrix.variant}}
         - name: Build and push
           uses: docker/build-push-action@v6
           with:
