@@ -10,7 +10,7 @@ jobs:
     build_devcontainer:
         strategy:
             matrix:
-                variant: [ubuntu-24.04]
+                variant: [ubuntu-24.04, debian-11, alpine-3.14]
         runs-on: ubuntu-24.04
         steps:
         - name: Checkout code
